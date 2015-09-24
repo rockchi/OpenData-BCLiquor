@@ -1,0 +1,38 @@
+---
+title: "BCLiquor_Regressions"
+author: "Rock Chi"
+date: "Thursday, September 24, 2015"
+output: html_document
+---
+Just some of the regressions and CART as shown in the presentation. Rather than only having R code, a full html document with code, plot should be hopefully more helpful.
+
+The overall focus of these quick models were for interpretability of variable importance and correlation to price over predication accuracy. 
+```{r, echo=TRUE}
+liquor <- read.csv("C:/Users/KaLok/Desktop/BC_Liquor_Store_Product_Price_List.csv")
+liquor$LogPrice <- log(liquor$CURRENT_DISPLAY_PRICE)
+wine <- subset(liquor, PRODUCT_SUB_CLASS_NAME == "TABLE WINE")
+```
+
+First regression using LogPrice as target. Predictors include Minor Class Names (Red, White, Rose) and Wine Country Origin
+
+```{r, echo=TRUE}
+lm1 <- lm(LogPrice~PRODUCT_MINOR_CLASS_NAME+PRODUCT_COUNTRY_ORIGIN_NAME+PRODUCT_ALCOHOL_PERCENT, data=wine)
+summary(lm1)
+```
+
+Second regression. I added in Sweetness Code into this regression. Something to note that I had realized in retrospective is that Sweetness Code is a categorical. Liquor of certain ranges are grouped together. However in the regression model, the variable was treated as a continuous variable!
+
+```{r, echo=TRUE}
+wine1 <- subset(wine, SWEETNESS_CODE != "NA")
+lm2 <- lm(LogPrice~SWEETNESS_CODE+PRODUCT_MINOR_CLASS_NAME+PRODUCT_COUNTRY_ORIGIN_NAME+PRODUCT_ALCOHOL_PERCENT, data=wine)
+summary(lm2)
+```
+
+Lastly, I had created a quick CART model. Since the focus is moreso on interpretability rather than accuracy, CART was definitely the superior approach in this case. Furthermore, if accuracy was the goal, CART will prove better especially when Product Name information is included since many Wines did not include information such as Year or Grape Variety.
+```{r, echo=TRUE}
+library(rpart)
+library(rpart.plot)
+CART1 <- rpart(CURRENT_DISPLAY_PRICE~SWEETNESS_CODE+PRODUCT_MINOR_CLASS_NAME+PRODUCT_COUNTRY_ORIGIN_NAME+PRODUCT_ALCOHOL_PERCENT, method="anova", data=wine, control=rpart.control(cp=0.001))
+prp(CART1)
+```
+
