@@ -1,15 +1,18 @@
 #OpenData BC-- BC Liquor Store Product Analysis
 
 Over the Spring 2015 semester at SFU, most of my work was qualitative sided. 
-To polish and keep up with some of the data analysis skills I have learnt over the past semesters, I decided to take on a side-project just for fun!
-I had always been interested learning about the nature of products from data. The public data on wine offered a great opportunitiy to do so on store-sold liquor in BC!
-The idea of the project is to analyze the open data available and to gain a better understanding of different product features' effect on pricing.
-
-#####The Data
-The data was a .csv file provided by [OpenData BC]{https://www.opendatabc.ca/dataset/bc-liquor-store-product-price-list-current-prices}.
+To polish and keep up with some of the data analysis skills, I decided to take on a side-project just for fun!
+The public data on wine offered a great opportunitiy to do so by analyzing store-sold liquor in BC!
+The idea of the project is to analyze the open data available and ain a better understanding of different product features' effect on pricing.
 
 #####Findings
 You will find the insights and findings in the folder summarized as a PDF file. The PDF was originally a PowerPoint file but later converted since PDF is more accessible for the public.
+- [Tableau Dashboard](https://public.tableau.com/profile/rock.chi5163#!/vizhome/BCLiquor/Compiled)
+- [PDF Presentation: PowerPoint Slides](https://github.com/rockchi/OpenData-BCLiquor/blob/master/BCLiquor.pdf)
+- [Linear Regression and Regression Tree](http://htmlpreview.github.com/?https://github.com/rockchi/OpenData-BCLiquor/blob/master/LiquorRegressions.html)
+
+#####The Data
+The data was a .csv file provided by [OpenData BC](https://www.opendatabc.ca/dataset/bc-liquor-store-product-price-list-current-prices).
 
 #####Analysis Tools
 - Visualizations: Tableau
